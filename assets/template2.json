@@ -1,0 +1,318 @@
+{
+  "?xml": {
+    "@_version": "1.0",
+    "@_encoding": "utf-16"
+  },
+  "Track": {
+    "gameVersion": "1.4.5",
+    "localID": {
+      "str": "d36d1b67-d461-4136-86f9-dcb0c8973e20",
+      "version": 1,
+      "type": "TRACK"
+    },
+    "name": "Coolbeans",
+    "description": "",
+    "dependencies": "",
+    "environment": "TheDrawingBoard",
+    "blueprints": {
+      "TrackBlueprint": [
+        {
+          "itemID": "DrawingBoardCylinder0.5mx5m04",
+          "instanceID": 2,
+          "position": {
+            "x": -2,
+            "y": 0,
+            "z": 0
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "purpose": "Functional",
+          "@_xsi:type": "TrackBlueprintFlag"
+        },
+        {
+          "itemID": "DrawingBoardCylinder0.5mx5m04",
+          "instanceID": 3,
+          "position": {
+            "x": 2,
+            "y": 0,
+            "z": 0
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "purpose": "Functional",
+          "@_xsi:type": "TrackBlueprintFlag"
+        },
+        {
+          "itemID": "SpawnPointSingle02",
+          "instanceID": 6,
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": -10
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "purpose": "Functional",
+          "spawnpoint": {
+            "name": "",
+            "@_xsi:type": "NamedDroneSpawnpoint"
+          },
+          "@_xsi:type": "TrackBlueprintSpawnpoint"
+        },
+        {
+          "itemID": "OctagonGate200x200cmGeneric01",
+          "instanceID": 7,
+          "position": {
+            "x": -4.068959,
+            "y": 0,
+            "z": 3.72261715
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "purpose": "Functional",
+          "@_xsi:type": "TrackBlueprintFlag"
+        },
+        {
+          "itemID": "ASLLightHoopGate01",
+          "instanceID": 8,
+          "position": {
+            "x": -13.5528584,
+            "y": 0,
+            "z": -2.08364964
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "purpose": "Functional",
+          "@_xsi:type": "TrackBlueprintFlag"
+        },
+        {
+          "itemID": "ASLLightHoopGate04",
+          "instanceID": 9,
+          "position": {
+            "x": -17.7146416,
+            "y": 0,
+            "z": -3.29091549
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "purpose": "Functional",
+          "@_xsi:type": "TrackBlueprintFlag"
+        },
+        {
+          "itemID": "TlTrackLight01",
+          "instanceID": 10,
+          "position": {
+            "x": -10.4975224,
+            "y": 0,
+            "z": -13.3830814
+          },
+          "rotation": {
+            "x": 0,
+            "y": 285,
+            "z": 0
+          },
+          "purpose": "Functional",
+          "@_xsi:type": "TrackBlueprintFlag"
+        },
+        {
+          "itemID": "DrawingBoardCube10mx10m04",
+          "instanceID": 11,
+          "position": {
+            "x": -48.0875549,
+            "y": 0,
+            "z": -24.6623878
+          },
+          "rotation": {
+            "x": 0,
+            "y": 4.99998474,
+            "z": 0
+          },
+          "purpose": "Functional",
+          "@_xsi:type": "TrackBlueprintFlag"
+        },
+        {
+          "itemID": "DrawingBoardCube1mx1m04",
+          "instanceID": 12,
+          "position": {
+            "x": -38.00947,
+            "y": 0,
+            "z": -31.7601471
+          },
+          "rotation": {
+            "x": 0,
+            "y": 50.0000038,
+            "z": 0
+          },
+          "purpose": "Functional",
+          "@_xsi:type": "TrackBlueprintFlag"
+        },
+        {
+          "itemID": "DrawingBoardCube5mx5m04",
+          "instanceID": 13,
+          "position": {
+            "x": -33.8460655,
+            "y": 0,
+            "z": -29.6379681
+          },
+          "rotation": {
+            "x": 0,
+            "y": 4.999928,
+            "z": 0
+          },
+          "purpose": "Functional",
+          "@_xsi:type": "TrackBlueprintFlag"
+        },
+        {
+          "itemID": "DrawingBoardCylinder0.5mx1m04",
+          "instanceID": 14,
+          "position": {
+            "x": -25.4907265,
+            "y": 0,
+            "z": -32.72352
+          },
+          "rotation": {
+            "x": 0,
+            "y": 4.99993038,
+            "z": 0
+          },
+          "purpose": "Functional",
+          "@_xsi:type": "TrackBlueprintFlag"
+        },
+        {
+          "itemID": "DrawingBoardCylinder0.5mx5m04",
+          "instanceID": 15,
+          "position": {
+            "x": -24.83913,
+            "y": 0,
+            "z": -32.4454422
+          },
+          "rotation": {
+            "x": 0,
+            "y": 4.999933,
+            "z": 0
+          },
+          "purpose": "Functional",
+          "@_xsi:type": "TrackBlueprintFlag"
+        },
+        {
+          "itemID": "DrawingBoardCylinder1mx1m04",
+          "instanceID": 16,
+          "position": {
+            "x": -23.918396,
+            "y": 0,
+            "z": -31.8834229
+          },
+          "rotation": {
+            "x": 0,
+            "y": 4.99993467,
+            "z": 0
+          },
+          "purpose": "Functional",
+          "@_xsi:type": "TrackBlueprintFlag"
+        },
+        {
+          "itemID": "DrawingBoardCylinder1mx5m04",
+          "instanceID": 17,
+          "position": {
+            "x": -21.6935577,
+            "y": 0,
+            "z": -30.5254021
+          },
+          "rotation": {
+            "x": 0,
+            "y": 4.99993658,
+            "z": 0
+          },
+          "purpose": "Functional",
+          "@_xsi:type": "TrackBlueprintFlag"
+        },
+        {
+          "itemID": "DrawingBoardPlate4mx4m04",
+          "instanceID": 18,
+          "position": {
+            "x": -17.8323174,
+            "y": 0,
+            "z": -28.1687965
+          },
+          "rotation": {
+            "x": 0,
+            "y": 50.0000153,
+            "z": 0
+          },
+          "purpose": "Functional",
+          "@_xsi:type": "TrackBlueprintFlag"
+        },
+        {
+          "itemID": "DrawingBoardWall5mx5m04",
+          "instanceID": 19,
+          "position": {
+            "x": -23.9949284,
+            "y": 0,
+            "z": -43.6432381
+          },
+          "rotation": {
+            "x": 0,
+            "y": 4.999921,
+            "z": 0
+          },
+          "purpose": "Functional",
+          "@_xsi:type": "TrackBlueprintFlag"
+        },
+        {
+          "itemID": "ASLLightBeam02",
+          "instanceID": 20,
+          "position": {
+            "x": -13.0258379,
+            "y": 0,
+            "z": -20.4129639
+          },
+          "rotation": {
+            "x": 0,
+            "y": 340.000031,
+            "z": 0
+          },
+          "purpose": "Functional",
+          "@_xsi:type": "TrackBlueprintFlag"
+        },
+        {
+          "itemID": "SteelProfile01",
+          "instanceID": 21,
+          "position": {
+            "x": -14.7507381,
+            "y": 0,
+            "z": -18.8510818
+          },
+          "rotation": {
+            "x": 359.031,
+            "y": 4.99980831,
+            "z": 1.39399767
+          },
+          "purpose": "Functional",
+          "@_xsi:type": "TrackBlueprintFlag"
+        }
+      ]
+    },
+    "lastTrackItemID": 21,
+    "hideDefaultSpawnpoint": false,
+    "@_xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
+    "@_xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance"
+  }
+}

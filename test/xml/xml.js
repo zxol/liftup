@@ -1,15 +1,27 @@
 import test from 'ava'
 
-import { readXMLFile, writeXMLFile } from '../../src/xml/xml.js'
+import { readXMLFile, writeXMLFile, printXMLFile } from '../../src/xml/xml.js'
 
 test('read test file', async t => {
-  const xmlObj = readXMLFile('./assets/testXML.xml')
-  t.deepEqual(await xmlObj, {
+  const xmlobj = readXMLFile('./assets/testXML.xml')
+  t.deepEqual(await xmlobj, {
     note: {
-      to: 'Tove',
-      from: 'Jani',
-      heading: 'Reminder',
-      body: "Don't forget me this weekend!"
+      to: 'tove',
+      from: 'jani',
+      heading: 'reminder',
+      body: "don't forget me this weekend!"
+    }
+  })
+})
+
+test('Print template file', async t => {
+  const xmlobj = printXMLFile('./assets/template.track')
+  t.deepEqual(await xmlobj, {
+    note: {
+      to: 'tove',
+      from: 'jani',
+      heading: 'reminder',
+      body: "don't forget me this weekend!"
     }
   })
 })
