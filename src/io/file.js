@@ -22,9 +22,9 @@ export const writeFile = async (filename, data, options = { encoding: 'utf8' }) 
 }
 
 export const readJSONFile = async filename => {
-  return import(filename)
-  // const fileString = readFile(filename)
-  // return JSON.parse(await fileString)
+  // return import(filename)
+  const fileString = readFile(filename)
+  return JSON.parse(await fileString)
 }
 
 export const makeFolder = path => {

@@ -2,31 +2,26 @@ import test from 'ava'
 
 import { readXMLFile, writeXMLFile, printXMLFile } from '../../src/xml/xml.js'
 
+const testJSONObj = {
+  note: {
+    to: 'Tove',
+    from: 'Jani',
+    heading: 'Reminder',
+    body: "Don't forget me this weekend!"
+  }
+}
+
 test('read test file', async t => {
-  const xmlobj = readXMLFile('./assets/testXML.xml')
-  t.deepEqual(await xmlobj, {
-    note: {
-      to: 'tove',
-      from: 'jani',
-      heading: 'reminder',
-      body: "don't forget me this weekend!"
-    }
-  })
+  const xmlObj = readXMLFile('./assets/testXML.xml')
+  t.deepEqual(await xmlObj, testJSONObj)
 })
 
 test('Print template file', async t => {
-  const xmlobj = printXMLFile('./assets/template.track')
-  t.deepEqual(await xmlobj, {
-    note: {
-      to: 'tove',
-      from: 'jani',
-      heading: 'reminder',
-      body: "don't forget me this weekend!"
-    }
-  })
+  const xmlObj = printXMLFile('./assets/testXML.xml')
+  t.deepEqual(await xmlObj, testJSONObj)
 })
 
 test('write test file', async t => {
   const xmlObj = writeXMLFile({ hello: 'hi' }, './assets/tempwrite.xml')
-  t.deepEqual(await xmlObj, '<hello>hi</hello>')
+  t.is(await xmlObj, '<hello>hi</hello>')
 })

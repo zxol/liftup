@@ -1,10 +1,10 @@
 import { readJSONFile } from '../io/file.js'
-import { mergeLeft } from 'ramda'
+import { mergeDeepLeft } from 'ramda'
 
-const TEMPLATE_FILE = '../../assets/template.json'
+const TEMPLATE_FILE = './assets/template.json'
 
 export const makeTrack = async (name = 'trackname') => {
-  const template = mergeLeft(
+  const template = mergeDeepLeft(
     {
       Track: {
         name,
