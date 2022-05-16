@@ -1,8 +1,4 @@
 {
-  "?xml": {
-    "@_version": "1.0",
-    "@_encoding": "utf-16"
-  },
   "Track": {
     "gameVersion": "1.4.5",
     "localID": {
@@ -17,7 +13,6 @@
     "blueprints": {
       "TrackBlueprint": []
     },
-    "lastTrackItemID": 1,
     "hideDefaultSpawnpoint": false,
     "@_xmlns:xsd": "http://www.w3.org/2001/XMLSchema",
     "@_xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance"

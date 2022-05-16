@@ -23,5 +23,5 @@ test('Print template file', async t => {
 
 test('write test file', async t => {
   const xmlObj = writeXMLFile({ hello: 'hi' }, './assets/tempwrite.xml')
-  t.is(await xmlObj, '<hello>hi</hello>')
+  t.is(await xmlObj, '<hello>hi</hello>\n')
 })

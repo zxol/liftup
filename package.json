@@ -5,7 +5,7 @@
   "main": "./build/index.js",
   "type": "module",
   "scripts": {
-    "go": "swc src -d build && node ./build/index.js",
+    "go": "node ./src/index.js",
     "test": "ava"
   },
   "author": "",
@@ -18,7 +18,11 @@
   },
   "dependencies": {
     "fast-xml-parser": "^4.0.7",
+    "mathjs": "^10.5.3",
+    "mersenne-twister": "^1.1.0",
+    "open-simplex-noise": "^2.5.0",
     "ramda": "^0.28.0",
+    "ramda-adjunct": "^3.1.0",
     "regenerator-runtime": "^0.13.9"
   }
 }

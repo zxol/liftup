@@ -1,6 +1,8 @@
 import test from 'ava'
 
-import { makeTrack } from '../../src/track/track.js'
+import { makeTrack, addBlueprint, saveTrack } from '../../src/track/track.js'
+import { makeBlueprint } from '../../src/track/blueprint.js'
+
 const testTrackData = {
   Track: {
     name: 'testTrack',
@@ -20,4 +22,23 @@ const testTrackData = {
 test('make new track object', async t => {
   const track = await makeTrack('testTrack')
   t.deepEqual(await track, testTrackData)
+})
+
+test('add blueprint to track', async t => {
+  let track = await makeTrack('testTrack')
+  const blueprint = makeBlueprint('cube1')
+  const blueprint2 = makeBlueprint('cylinder0')
+  track = addBlueprint(track, blueprint)
+  track = addBlueprint(track, blueprint2)
+  t.pass()
+})
+
+test('save track', async t => {
+  let track = await makeTrack('monono')
+  const blueprint = makeBlueprint('cube1', [10, 0, 0])
+  const blueprint2 = makeBlueprint('cylinder0', [0, 0, 10])
+  track = addBlueprint(track, blueprint)
+  track = addBlueprint(track, blueprint2)
+  await saveTrack(track)
+  t.pass()
 })
