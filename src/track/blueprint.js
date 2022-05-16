@@ -40,7 +40,7 @@ export const validateTransformBlueprint = pipe(
 
 export const makeBlueprint = (itemID, position = [0, 0, 0], rotation = [0, 0, 0]) => {
   return {
-    itemID: ids[itemID],
+    itemID: ids[itemID] ?? itemID,
     position,
     rotation
   }

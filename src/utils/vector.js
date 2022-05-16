@@ -10,6 +10,8 @@ import { mapF } from './array.js'
 // export const identity = identity
 // export const size = size
 // export const mag = hypot
+
+export const z3 = () => [0, 0, 0]
 export const squareSum = pipe(map(math.powFlipped(2)), sum)
 export const scale = _c((amt, v) => map(math.mul(amt), v))
 export const scl = scale

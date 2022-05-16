@@ -2,6 +2,7 @@
 // import go from './presets/02-grid.js'
 // import go from './presets/03-random-items.js'
 // import go from './presets/04-loop-trainer.js'
-import go from './presets/05-mesh.js'
+// import go from './presets/05-mesh.js'
+import go from './presets/06-06-orientation-survey.js'
 
 go()

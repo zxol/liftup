@@ -5,8 +5,10 @@
   "main": "./build/index.js",
   "type": "module",
   "scripts": {
-    "go": "node ./src/index.js",
-    "test": "ava"
+    "go": "node src/index.js",
+    "test": "ava",
+    "repl": "node src/repl.js",
+    "replWatch": "nodemon --exec npm run repl"
   },
   "author": "",
   "license": "ISC",
@@ -14,12 +16,14 @@
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.2.177",
     "ava": "^4.2.0",
-    "eslint": "8.8.0"
+    "eslint": "8.8.0",
+    "nodemon": "^2.0.16"
   },
   "dependencies": {
     "fast-xml-parser": "^4.0.7",
     "mathjs": "^10.5.3",
     "mersenne-twister": "^1.1.0",
+    "open": "^8.4.0",
     "open-simplex-noise": "^2.5.0",
     "ramda": "^0.28.0",
     "ramda-adjunct": "^3.1.0",
