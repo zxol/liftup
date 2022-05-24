@@ -346,11 +346,38 @@ export const pi = Math.PI
 export const tau = 2 * Math.PI
 
 /**
+ * Mathematical constant √2
+ * @const {number} - r2
+ */
+export const r2 = Math.sqrt(2)
+
+/**
+ * Mathematical constant 1/√2
+ * @const {number} - r2recip
+ */
+export const r2recip = 1 / Math.sqrt(2)
+export const r2r = r2recip
+
+/**
+ * Mathematical constant PI over 4 (3.141../4)
+ * @const {number} - quarterpi
+ */
+export const quarterpi = Math.PI / 4
+export const qpi = quarterpi
+
+/**
  * Mathematical constant PI over 2 (3.141../2)
  * @const {number} - halfpi
  */
 export const halfpi = Math.PI / 2
+export const hpi = halfpi
 
+/**
+ * Mathematical constant 3 * PI / 2 (3 * 3.141../2)
+ * @const {number} - threehalfpi
+ */
+export const threehalfpi = (3 * Math.PI) / 2
+export const h3pi = threehalfpi
 /**
  * Square root of 2, pythagoras' constant.
  * @const {number} - pythag
@@ -423,6 +450,18 @@ export const sinUni = x => (1 + sin(x)) * 0.5
  * -> 0
  */
 export const tan = x => Math.tan(tau * x)
+
+/**
+ * Trigonometric function tangent using tau units, instead of radians. (0 to 1 is one cycle)
+ * @function atan2
+ * @param x {number} - Input number.
+ * @param y {number} - Input number.
+ * @returns {number} - angle in radians
+ * @example
+ * atan2(1,1)
+ * -> pi/4
+ */
+export const atan2 = _c(Math.atan2)
 
 /**
  * Periodic triangle wave function using tau units, instead of radians. (0 to 1 is one cycle)

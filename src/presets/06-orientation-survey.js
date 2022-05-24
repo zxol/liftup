@@ -6,12 +6,36 @@ import { times3D } from '../utils/array.js'
 import * as v from '../utils/vector.js'
 import * as m from '../utils/math.js'
 
+// results: rotation is left handed.
+
 export const go = async () => {
   let track = await makeTrack('rotationsurvey')
-  track.items.push(makeBlueprint('DrawingBoardCylinder0.5mx5m01', v.z3(), v.z3()))
-  track.items.push(makeBlueprint('DrawingBoardCylinder0.5mx5m02', v.z3(), [m.halfpi, 0, 0]))
-  track.items.push(makeBlueprint('DrawingBoardCylinder0.5mx5m03', v.z3(), [m.pi, 0, 0]))
-  track.items.push(makeBlueprint('DrawingBoardCylinder0.5mx5m04', v.z3(), [(3 * m.pi) / 4, 0, 0]))
+  track.items.push(makeBlueprint('DrawingBoardCylinder0.5mx5m01', [0, 5, 0], [0, 0, 0]))
+  track.items.push(makeBlueprint('DrawingBoardCylinder0.5mx5m02', [0, 5, 0], [0, 0, m.halfpi]))
+  track.items.push(makeBlueprint('DrawingBoardCylinder0.5mx5m03', [0, 5, 0], [0, 0, m.pi]))
+  track.items.push(makeBlueprint('DrawingBoardCylinder0.5mx5m04', [0, 5, 0], [0, 0, (3 * m.tau) / 4]))
+
+  track.items.push(
+    makeBlueprint('DrawingBoardCylinder0.5mx5m01', pipe(v.rot3z(0), v.add([0, 5, 0]))([0, 5, 0]), [0, 0, 0])
+  )
+  track.items.push(
+    makeBlueprint('DrawingBoardCylinder0.5mx5m02', pipe(v.rot3z(m.halfpi), v.add([0, 5, 0]))([0, 5, 0]), [
+      0,
+      0,
+      m.halfpi
+    ])
+  )
+  track.items.push(
+    makeBlueprint('DrawingBoardCylinder0.5mx5m03', pipe(v.rot3z(m.pi), v.add([0, 5, 0]))([0, 5, 0]), [0, 0, m.pi])
+  )
+  track.items.push(
+    makeBlueprint('DrawingBoardCylinder0.5mx5m04', pipe(v.rot3z((3 * m.tau) / 4), v.add([0, 5, 0]))([0, 5, 0]), [
+      0,
+      0,
+      (3 * m.tau) / 4
+    ])
+  )
+
   track.items.push(makeSpawnPoint([0, 1, -20]))
   track.Track.hideDefaultSpawnpoint = true
   // console.log(JSON.stringify(track, null, 4))

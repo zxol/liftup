@@ -46,9 +46,7 @@ export const makeBlueprint = (itemID, position = [0, 0, 0], rotation = [0, 0, 0]
   }
 }
 
-let spawnNumberState = 2
-export const makeSpawnPoint = (position = [0, 0, -30], rotation = [0, 0, 0], _number) => {
-  const number = _number ?? spawnNumberState++
+export const makeSpawnPoint = (position = [0, 0, -30], rotation = [0, 0, 0], number = 2) => {
   return {
     itemID: `SpawnPointSingle0${number}`,
     position,

@@ -6,9 +6,10 @@ import { filter } from 'ramda'
 import open from 'open'
 import { padEnd } from 'ramda-adjunct'
 
+import * as toolbox from './toolbox.js'
+
 let replContext = {}
 let myRepl = {}
-// Object.assign(replContext, toolbox)
 
 // fs.watch('src/presets/', { recursive: true }, (event_type, file_name) => {
 //   if (event_type === 'change') {
@@ -53,5 +54,6 @@ replContext.rp = replContext.runPreset
     ignoreUndefined: true,
     prompt: 'repl >'
   })
-  Object.assign(myRepl.context, replContext)
+
+  Object.assign(myRepl.context.global, toolbox.default, replContext)
 })()
