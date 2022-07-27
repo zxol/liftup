@@ -1,9 +1,14 @@
 import * as m from './math.js'
-import { map, sum, pipe, curry as _c, transpose, prop } from 'ramda'
-import { mapF, timesF } from './array.js'
+import { map, sum, pipe, curry as _c, transpose, prop, compose, identity } from 'ramda'
+import { mapF, timesF, mapMap } from './array.js'
 import { rotate, add as addmjs, subtract as submjs, hypot as mag, multiply as mul } from 'mathjs'
 export { ones, zeros, identity, distance as dist } from 'mathjs'
 export { mag, mul, transpose, rotate }
+
+const sin = Math.sin,
+  cos = Math.cos,
+  tan = Math.tan,
+  atan2 = Math.atan2
 
 export const up = [0, 1, 0]
 export const down = [0, -1, 0]
@@ -13,11 +18,11 @@ export const into = [0, 0, -1]
 export const outward = [0, 0, 1]
 export const qs = [m.halfpi / 2, m.pi, m.pi + m.halfpi, m.tau]
 
-const tidyFloat = number => {
-  const num = Math.round(number * 1e15) / 1e15
-  return num === -0 ? 0 : num
+export const tidyFloat = number => {
+  const num = Math.round(number * 1e8) / 1e8
+  return num == -0 ? 0 : num
 }
-const mapTidy = map(tidyFloat)
+export const mapTidy = map(tidyFloat)
 export const d2r = x => (m.tau * x) / 360
 export const r2d = x => (360 * x) / m.tau
 export const z3 = () => [0, 0, 0]
@@ -31,50 +36,54 @@ export const rot3x = _c((theta, v) => rotate(v, theta, [1, 0, 0]))
 export const rot3y = _c((theta, v) => rotate(v, theta, [0, 1, 0]))
 export const rot3z = _c((theta, v) => rotate(v, theta, [0, 0, 1]))
 export const rot3test = ([x, y, z], v) => mapTidy(rot3z(z, rot3y(y, rot3x(x, v))))
-export const anglesOLD = v => {
-  const rMat = rotM(v)
-  const R = (row, col) => rMat[row - 1][col - 1]
-  let θ, ψ, φ
-  if (!(R(3, 1) === 1 || R(3, 1) === -1)) {
-    θ = -Math.asin(R(3, 1))
-    ψ = Math.atan2(R(3, 2) / Math.cos(θ), R(3, 3) / Math.cos(θ))
-    φ = Math.atan2(R(2, 1) / Math.cos(θ), R(1, 1) / Math.cos(θ))
-  } else {
-    φ = 0
-    if (R(3, 1) === -1) {
-      θ = m.halfpi
-      ψ = Math.atan2(R(1, 2), R(1, 3))
-    } else {
-      θ = -m.halfpi
-      ψ = Math.atan2(-R(1, 2), -R(1, 3))
-    }
-  }
-  return [θ, ψ, φ]
+
+export const spherical2Rect = ([dist, long, lat]) => {
+  const z = dist * cos(lat) * sin(long)
+  const y = dist * sin(lat) * sin(long)
+  const x = dist * cos(long)
+  // console.log(mapTidy([x, y, z]))
+  // return mapTidy([x, y, z])
+  return [x, y, z]
 }
 
-// export const angles = vect => {
-//   const [x, y, z] = unit(vect)
-//   let rotz,
-//     roty = Math.atan2(z, x)
-//   if (x >= 0) {
-//     rotz = -Math.atan2(y * Math.cos(roty), x)
-//   } else {
-//     rotz = Math.atan2(y * Math.cos(roty), -x)
-//   }
-//   // rotx = m.hpi - Math.atan2(y * Math.cos(roty), x)
-//   return [0, roty, rotz]
-// }
+export const rect2spherical = ([x, y, z]) => {
+  const dist = m.sqrt(x ** 2 + y ** 2 + z ** 2)
+  const long = Math.atan2(y, x)
+  const lat = Math.acos(z / dist)
+  return [dist, long, lat]
+}
+const reverseRotMat = identity
+
+export const tbAnglesZXYToRotMatrix = vect => {
+  const c = n => Math.cos(vect[n - 1])
+  const s = n => Math.sin(vect[n - 1])
+  const c1 = c(1),
+    c2 = c(2),
+    c3 = c(3),
+    s1 = s(1),
+    s2 = s(2),
+    s3 = s(3)
+  return reverseRotMat([
+    [c1 * c3 - s1 * s2 * s3, -c2 * s1, c1 * s3 + c3 * s1 * s2],
+    [c3 * s1 + c1 * s2 * s3, c1 * c2, s1 * s3 - c1 * c3 * s2],
+    [-c2 * s3, s2, c2 * c3]
+  ])
+}
+
+export const rotMatrixTotbAnglesZXY = rMat => {
+  const R = (row, col) => rMat[row - 1][col - 1]
+  return [Math.atan(-R(1, 2) / R(2, 2)), Math.atan(R(3, 2) / m.sqrt(1 - R(3, 2) ** 2)), Math.atan(-R(3, 1) / R(3, 3))]
+}
+
+export const testZXY = compose(rotMatrixTotbAnglesZXY, tbAnglesZXYToRotMatrix)
+
 export const angles = vect => {
   const [x, y, z] = unit(vect)
-  let rotx,
-    roty = Math.atan2(x, y)
-  // if (y >= 0) {
-  //   rotx = -Math.atan2(y * Math.cos(roty), x)
-  // } else {
-  //   rotx = Math.atan2(y * Math.cos(roty), -x)
-  // }
-  rotx = m.hpi - Math.atan2(y * Math.cos(roty), x)
-  return [rotx, roty, 0]
+
+  let rotx = 0 //Math.atan2(y, z)
+  let rotz = Math.acos(y)
+  let roty = Math.atan2(z, -x)
+  return mapTidy([rotx, roty, rotz])
 }
 export const anglesOLD2 = ([x, y, z]) => {
   let roty
@@ -88,8 +97,6 @@ export const anglesOLD2 = ([x, y, z]) => {
   return [rotx, roty, rotz]
 }
 
-const sin = Math.sin
-const cos = Math.cos
 export const rotM = ([a, b, y]) => {
   const cosa = cos(a),
     cosb = cos(b),

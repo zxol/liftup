@@ -397,6 +397,17 @@ export const phi = (1 + sqrt(5)) / 2
 export const Phi = 1 / phi
 
 /**
+ * negates (flips sign) of a number
+ * @function neg
+ * @param x {number} - Input number.
+ * @returns {number} - flipped sign of x
+ * @example
+ * neg(0.5)
+ * -> -0.5
+ */
+export const neg = x => -x
+
+/**
  * Trigonometric function cosine using tau units, instead of radians. (0 to 1 is one cycle)
  * @function cos
  * @param x {number} - Input number.

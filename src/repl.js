@@ -32,12 +32,12 @@ const findPresetPath = presetNum => {
   return filePath
 }
 
-replContext.runPreset = async presetNum => {
+replContext.runPreset = async (presetNum, ...presetArgs) => {
   const filePath = findPresetPath(presetNum)
   console.log(`  --- Running ${filePath} ---`)
   try {
     import(filePath).then(async m => {
-      console.log(`\n${await m.go()}`)
+      console.log(`\n${await m.go(...presetArgs)}`)
       myRepl.displayPrompt(true)
     })
   } catch (e) {
