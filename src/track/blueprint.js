@@ -1,6 +1,23 @@
 import { tau } from '../utils/math.js'
-import { zipObj, compose, map, mergeAll, multiply, mergeDeepRight, evolve, pipe, mergeDeepWith, curry } from 'ramda'
+import {
+  zipObj,
+  compose,
+  map,
+  mergeAll,
+  multiply,
+  mergeDeepRight,
+  evolve,
+  pipe,
+  mergeDeepWith,
+  curry,
+  collectBy,
+  equals,
+  dropLast,
+  uniqWith,
+  omit
+} from 'ramda'
 import * as m from '../utils/math.js'
+import { v4 as genUUID } from 'uuid'
 
 export const ids = {
   cube1: 'DrawingBoardCube1mx1m04',
@@ -33,13 +50,29 @@ export const translateBlueprint = curry((vect, blueprint) =>
 
 export const rotateBlueprint = curry((vect, blueprint) => mergeDeepWith(zipWith(m.add), blueprint, { rotation: vect }))
 
+export const removeSuperimposedBlueprints = items => {
+  // const grouped = collectBy(compose(dropLast(2), prop('itemID')), items)
+  // console.log(items)
+  const out = uniqWith((a, b) => {
+    return (
+      equals(dropLast(2, a.itemID), dropLast(2, b.itemID)) &&
+      equals(a.position, b.position) &&
+      equals(a.rotation, b.rotation)
+    )
+  }, items)
+  console.log(out)
+  return out
+}
+
 export const validateTransformBlueprint = pipe(
+  omit(['uuid']),
   mergeDeepRight({ purpose: 'Functional', '@_xsi:type': 'TrackBlueprintFlag' }),
   evolve({ position: fixedVect, rotation: radiansToDegrees })
 )
 
 export const makeBlueprint = (itemID, position = [0, 0, 0], rotation = [0, 0, 0]) => {
   return {
+    uuid: genUUID(),
     itemID: ids[itemID] ?? itemID,
     position,
     rotation
@@ -48,6 +81,7 @@ export const makeBlueprint = (itemID, position = [0, 0, 0], rotation = [0, 0, 0]
 
 export const makeSpawnPoint = (position = [0, 0, -30], rotation = [0, 0, 0], number = 2) => {
   return {
+    uuid: genUUID(),
     itemID: `SpawnPointSingle0${number}`,
     position,
     rotation,

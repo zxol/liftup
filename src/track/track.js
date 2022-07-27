@@ -1,7 +1,7 @@
 import { readJSONFile, makeFolder } from '../io/file.js'
-import { mergeDeepLeft, map } from 'ramda'
+import { mergeDeepLeft, map, pipe } from 'ramda'
 import { writeXMLFile } from '../xml/xml.js'
-import { validateTransformBlueprint } from './blueprint.js'
+import { removeSuperimposedBlueprints, validateTransformBlueprint } from './blueprint.js'
 
 const TEMPLATE_FILE = './assets/template.json'
 const TRACKS_DIR = './assets/Tracks'
@@ -39,7 +39,7 @@ export const addBlueprint = (track, blueprint) => {
 }
 
 export const saveTrack = async track => {
-  track.items = map(validateTransformBlueprint, track.items)
+  track.items = pipe(removeSuperimposedBlueprints, map(validateTransformBlueprint))(track.items)
   const trackName = track.Track.localID.str
   const folderName = `${TRACKS_DIR}/${trackName}`
   makeFolder(folderName)
